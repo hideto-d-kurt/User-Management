@@ -1,5 +1,9 @@
 # User-Management
 package for user management
+Generated using comoser
+```shell
+composer require hideto-d-kurt/user-management
+```
 ## Get all users
 Example
 ```php
