@@ -2,11 +2,20 @@
 
 namespace UserManagement;
 
-class UserAuth
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+
+class UserAuth extends Eloquent 
 {
-    public static function testUser()
+    protected $collection = 'users';
+    
+    public static function getModel() {
+        return new MenuModel();
+    }
+
+    public function getAllUsers()
     {
-        return "user management\n";
+        $result = $this->get();
+        return $result;
     }
 }
 
