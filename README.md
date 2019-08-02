@@ -28,3 +28,34 @@ class UsersController extends Controller
 }
 
 ```
+
+## Set user logs
+Example post log data
+```json
+{
+    "id": "5d42a97d68285300074e4f42",
+    "uri": "/home",
+    "date_time": "1564739327"
+}
+```
+Example function
+```php
+use UserManagement\UserLog;
+
+class UsersController extends Controller
+{
+    protected $user_log = null;
+
+    public function __construct()
+    {
+        $this->user_log = new UserLog();
+    }
+    
+    public function setUserLog(Request $req)
+    {
+        $log_detail = $req->all();
+        $this->user_log->setUserLog($log_detail);
+        return response()->json(['data' => $log_detail]);
+    }
+}
+```
