@@ -1,5 +1,11 @@
 # User-Management
 package for user management
+## This package require
+You should used MongoDB
+```shell
+jenssegers/laravel-mongodb
+```
+
 Generated using comoser
 ```shell
 composer require hideto-d-kurt/user-management
