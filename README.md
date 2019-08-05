@@ -102,7 +102,7 @@ Response
 ```
 
 ## Create User
-Example pos data
+Example post data
 ```json
 {
     "name": "Hideto D Kurt",
@@ -125,7 +125,7 @@ public function createUser(Request $req)
 {
     $user       = $req->all();
     $user_class = new Users();
-    $user       = $user_class->createUser($user);
+    $user       = $user_class->createUser($user, 'email');
     if($user) {
         return response()->json(['data' => $user, 'message' => 'Create User Success.']);
     } else {
@@ -154,6 +154,60 @@ Response Fail
 {
     "data": {},
     "massage": "Create User fail."
+}
+```
+
+## Update User
+Example post data
+```json
+{
+    "_id": "5d42a97d68285300074e4f42",
+    "name": "toshi",
+    "email": "xxxxx@gmail.com",
+    "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG"
+}
+```
+Password generate by 
+```php
+use Illuminate\Support\Facades\Hash;
+/*-----------------------*/
+'password' => Hash::make($data['password'])
+```
+
+Example code
+```php
+public function updateUser(Request $req)
+{
+    $user = $req->all();
+    $user = $this->users->updateUser($user, '_id');
+    if($user) {
+        return response()->json(['data' => $user, 'message' => 'Update User Success']);
+    } else {
+        return response()->json(['data' => [], 'message' => 'Update User fail.']);
+    }
+}
+```
+
+Response Success
+```json
+{
+    "data": {
+        "_id": "5d42a97d68285300074e4f42",
+        "name": "toshi",
+        "email": "xxxxx@gmail.com",
+        "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+        "updated_at": "2019-08-05 03:59:38",
+        "created_at": "2019-08-01 08:57:33"
+    },
+    "massage": "Update User Success."
+}
+```
+
+Response Fail
+```json
+{
+    "data": {},
+    "massage": "Update User fail."
 }
 ```
 

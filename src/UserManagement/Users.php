@@ -29,10 +29,26 @@ class Users extends Eloquent
         return $user;
     }
 
-    public static function createUser($user)
+    public static function createUser($user, $search_key)
     {
         if(self::insert($user)) {
-            $user = self::where('email', '=', $user['email'])->first();
+            $user = self::where($search_key, '=', $user[$search_key])->first();
+            return $user;
+        } else {
+            return false;
+        }
+    }
+
+    public static function updateUser($user, $search_key)
+    {
+        $user_update = self::where($search_key, '=', $user[$search_key])->first();
+        foreach($user as $key => $val) {
+            if($key != "_id") {
+                $user_update->$key = $user[$key];
+            }
+        }
+        if($user_update->save()) {
+            $user = self::where($search_key, '=', $user[$search_key])->first();
             return $user;
         } else {
             return false;
