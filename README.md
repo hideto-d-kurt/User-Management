@@ -306,5 +306,42 @@ Response
 }
 ```
 
+## Get user by key and value and condition
+Example
+```php
+public function getUserByCondition()
+{
+    $key = 'email';
+    $value = '%gmail.com%';
+    $condition = 'like';
+    $user = $this->users->getUserByKeyAndCondition($key, $value, $condition);
+    return response()->json(['data' => $user]);
+}
+```
+
+Response
+```json
+{
+    "data": [
+        {
+            "_id": "5d42a97d68285300074e4f42",
+            "name": "Hideto D Kurt",
+            "email": "xxxxx@gmail.com",
+            "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+            "updated_at": "2019-08-01 08:57:33",
+            "created_at": "2019-08-01 08:57:33"
+        },
+        {
+            "_id": "5d47bf556828530007429b78",
+            "name": "abc def",
+            "email": "abc@gmail.com",
+            "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POMJHG",
+            "created_at": "2019-08-05 05:32:05",
+            "updated_at": "2019-08-05 05:32:05"
+        }
+    ]
+}
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
