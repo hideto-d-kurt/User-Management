@@ -33,6 +33,9 @@ class Users extends Eloquent
     {
         if(self::insert($user)) {
             $user = self::where($search_key, '=', $user[$search_key])->first();
+            $user->created_at = new \DateTime();
+            $user->save();
+            $user = self::where($search_key, '=', $user[$search_key])->first();
             return $user;
         } else {
             return false;
@@ -55,10 +58,21 @@ class Users extends Eloquent
         }
     }
 
-    public static function deleteUser($user, $search_key)
+    public static function deleteUserHard($user, $search_key)
     {
         $user = self::where($search_key, '=', $user[$search_key])->first();
         if($user->delete()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function deleteUserSoft($user, $search_key)
+    {
+        $user_update = self::where($search_key, '=', $user[$search_key])->first();
+        $user_update->deleted_at = new \DateTime();
+        if($user_update->save()) {
             return true;
         } else {
             return false;
