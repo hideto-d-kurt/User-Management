@@ -281,5 +281,30 @@ Response Fail
 }
 ```
 
+## Get user by other key
+Example
+```php
+public function getOneUserByUnique()
+{
+    $users = new Users();
+    $user = $users->getUserById('email', 'abc@gmail.com');
+    return response()->json(['data' => $user]);
+}
+```
+
+Response
+```json
+{
+    "data": {
+        "_id": "5d42a97d68285300074e4f42",
+        "name": "Hideto D Kurt",
+        "email": "abc@gmail.com",
+        "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+        "updated_at": "2019-08-01 08:57:33",
+        "created_at": "2019-08-01 08:57:33"
+    }
+}
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
