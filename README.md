@@ -2,7 +2,6 @@
 [![Latest Stable Version](https://poser.pugx.org/hideto-d-kurt/user-management/v/stable)](https://packagist.org/packages/hideto-d-kurt/user-management)
 [![Total Downloads](https://poser.pugx.org/hideto-d-kurt/user-management/downloads)](https://packagist.org/packages/hideto-d-kurt/user-management)
 [![License](https://poser.pugx.org/hideto-d-kurt/user-management/license)](https://packagist.org/packages/hideto-d-kurt/user-management)
-package for user management
 
 # Requirements
 You should used MongoDB
