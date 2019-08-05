@@ -21,5 +21,22 @@ class Users extends Eloquent
         $result = $arrToarr->removeMongoId($result);
         return $result;
     }
+
+    public static function getUserById($id)
+    {
+        $user = self::where('_id', '=', $id)->first();
+        $user = json_decode($user, true);
+        return $user;
+    }
+
+    public static function createUser($user)
+    {
+        if(self::insert($user)) {
+            $user = self::where('email', '=', $user['email'])->first();
+            return $user;
+        } else {
+            return false;
+        }
+    }
 }
 
