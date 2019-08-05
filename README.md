@@ -6,7 +6,7 @@
 # Requirements
 You should used MongoDB
 ```
- * PHP >= 5.3.0
+ * PHP >= 7.1.0
  * jenssegers/laravel-mongodb
 ```
 
