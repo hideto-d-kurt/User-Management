@@ -1,15 +1,22 @@
-# User-Management
+# User Management for Laravel
+[![Latest Stable Version](https://poser.pugx.org/hideto-d-kurt/user-management/v/stable)](https://packagist.org/packages/hideto-d-kurt/user-management)
+[![Total Downloads](https://poser.pugx.org/hideto-d-kurt/user-management/downloads)](https://packagist.org/packages/hideto-d-kurt/user-management)
+[![License](https://poser.pugx.org/hideto-d-kurt/user-management/license)](https://packagist.org/packages/hideto-d-kurt/user-management)
 package for user management
-## This package require
+
+# Requirements
 You should used MongoDB
-```shell
+```
+PHP >= 5.3.0
 jenssegers/laravel-mongodb
 ```
 
-Generated using comoser
+# Installation
 ```shell
 composer require hideto-d-kurt/user-management
 ```
+
+# Usage
 ## Get all users
 Example
 ```php
