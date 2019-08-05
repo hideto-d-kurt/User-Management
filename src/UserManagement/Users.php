@@ -36,6 +36,13 @@ class Users extends Eloquent
         return $user;
     }
 
+    public static function getUserByKeyAndCondition($search_key, $condition)
+    {
+        $user = self::where($search_key, $condition, $user[$search_key])->get();
+        $user = json_decode($user, true);
+        return $user;
+    }
+
     public static function createUser($user, $search_key)
     {
         if(self::insert($user)) {
