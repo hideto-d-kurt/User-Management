@@ -343,5 +343,61 @@ Response
 }
 ```
 
+## User Login
+Example post data
+```json
+{
+    "_id": "5d42a97d68285300074e4f42",
+    "name": "toshi",
+    "email": "xxxxx@gmail.com",
+    "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG"
+}
+```
+Password generate by 
+```php
+use Illuminate\Support\Facades\Hash;
+/*-----------------------*/
+'password' => Hash::make($data['password'])
+```
+
+Example code
+```php
+public function loginUesr(Request $req)
+{
+    $user_login = new Users();
+    $user = $req->all();
+    $user = $user_login->userAuth($user, 'email', 'password');
+    if($user) {
+        return response()->json(['data' => $user, 'message' => 'Log in Success.']);
+    } else {
+        return response()->json(['data' => [], 'message' => 'Log in fail.']);
+    }
+}
+```
+
+Response Success
+```json
+{
+    "data": {
+        "_id": "5d42a97d68285300074e4f42",
+        "name": "toshi",
+        "email": "xxxxx@gmail.com",
+        "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+        "created_at": "2019-08-01 08:57:33",
+        "updated_at": "2019-08-05 09:37:52",
+        "login_at": "2019-08-05 09:37:52"
+    },
+    "massage": "Log in Success."
+}
+```
+
+Response Fail
+```json
+{
+    "data": {},
+    "massage": "Log in fail."
+}
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
