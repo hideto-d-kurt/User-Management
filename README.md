@@ -211,5 +211,75 @@ Response Fail
 }
 ```
 
+## Soft and Hard delete User
+Example post data
+```json
+{
+    "_id": "5d42a97d68285300074e4f42",
+    "name": "toshi",
+    "email": "xxxxx@gmail.com"
+}
+```
+
+Example code for hard delete
+```php
+public function deleteUserHard(Request $req)
+{
+    $user = $req->all();
+    $user = $this->users->deleteUserHard($user, '_id');
+    if($user) {
+        return response()->json(['data' => [], 'message' => 'Hard Delete User Success']);
+    } else {
+        return response()->json(['data' => [], 'message' => 'Hard Delete User fail.']);
+    }
+}
+```
+
+Response Success
+```json
+{
+    "data": {},
+    "massage": "Hard Delete User Success."
+}
+```
+
+Response Fail
+```json
+{
+    "data": {},
+    "massage": "Hard Delete User fail."
+}
+```
+
+Example code for soft delete
+```php
+public function deleteUserSoft(Request $req)
+{
+    $user = $req->all();
+    $user = $this->users->deleteUserHard($user, '_id');
+    if($user) {
+        return response()->json(['data' => [], 'message' => 'Soft Delete User Success']);
+    } else {
+        return response()->json(['data' => [], 'message' => 'Soft Delete User fail.']);
+    }
+}
+```
+
+Response Success
+```json
+{
+    "data": {},
+    "massage": "Soft Delete User Success."
+}
+```
+
+Response Fail
+```json
+{
+    "data": {},
+    "massage": "Soft Delete User fail."
+}
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
