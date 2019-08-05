@@ -69,3 +69,84 @@ class UsersController extends Controller
     }
 }
 ```
+
+## Get user by ID
+Example
+```php
+public function getUserById($id)
+{
+    $users = new Users();
+    $user = $users->getUserById($id);
+    return response()->json(['data' => $user]);
+}
+```
+
+Response
+```json
+{
+    "data": {
+        "_id": "5d42a97d68285300074e4f42",
+        "name": "Hideto D Kurt",
+        "email": "abc@gmail.com",
+        "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+        "updated_at": "2019-08-01 08:57:33",
+        "created_at": "2019-08-01 08:57:33"
+    }
+}
+```
+
+## Create User
+Example pos data
+```json
+{
+    "name": "Hideto D Kurt",
+    "email": "abc@gmail.com",
+    "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+    "updated_at": "2019-08-01T08:57:33Z",
+    "created_at": "2019-08-01T08:57:33Z"
+}
+```
+Password generate by 
+```php
+use Illuminate\Support\Facades\Hash;
+/*-----------------------*/
+'password' => Hash::make($data['password'])
+```
+
+Example code
+```php
+public function createUser(Request $req)
+{
+    $user       = $req->all();
+    $user_class = new Users();
+    $user       = $user_class->createUser($user);
+    if($user) {
+        return response()->json(['data' => $user, 'message' => 'Create User Success.']);
+    } else {
+        return response()->json(['data' => [], 'message' => 'Create User fail.']);
+    }
+}
+```
+
+Response Success
+```json
+{
+    "data": {
+        "_id": "5d42a97d68285300074e4f42",
+        "name": "Hideto D Kurt",
+        "email": "abc@gmail.com",
+        "password": "$2y$10$4Ft/HJveRZuYYMlQxEcuzuckvJhEvW94/K9IPqWaso8wXl0POCKHG",
+        "updated_at": "2019-08-01 08:57:33",
+        "created_at": "2019-08-01 08:57:33"
+    },
+    "massage": "Create User Success."
+}
+```
+
+Response Fail
+```json
+{
+    "data": {},
+    "massage": "Create User fail."
+}
+```
