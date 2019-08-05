@@ -92,5 +92,27 @@ class Users extends Eloquent
             return false;
         }
     }
+
+    public static function userAuth($user, $username_key, $password_key)
+    {
+        $user_auth = self::where($username_key, '=', $user[$username_key])->where($password_key, '=', $user[$password_key])->first();
+        $user_auth->login_at = new \DateTime();
+        if($user_auth->save()) {
+            return $user_auth;
+        } else {
+            return false;
+        }
+    }
+
+    public static function userAuth($user, $username_key, $password_key)
+    {
+        $user_auth = self::where($username_key, '=', $user[$username_key])->where($password_key, '=', $user[$password_key])->first();
+        $user_auth->login_at = (new \DateTime())->format('Y-m-d H:i:s');
+        if($user_auth->save()) {
+            return $user_auth;
+        } else {
+            return false;
+        }
+    }
 }
 
