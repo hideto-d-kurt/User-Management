@@ -54,5 +54,15 @@ class Users extends Eloquent
             return false;
         }
     }
+
+    public static function deleteUser($user, $search_key)
+    {
+        $user = self::where($search_key, '=', $user[$search_key])->first();
+        if($user->delete()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
