@@ -6,8 +6,8 @@
 # Requirements
 You should used MongoDB
 ```
-PHP >= 5.3.0
-jenssegers/laravel-mongodb
+ * PHP >= 5.3.0
+ * jenssegers/laravel-mongodb
 ```
 
 # Installation
@@ -156,3 +156,6 @@ Response Fail
     "massage": "Create User fail."
 }
 ```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
