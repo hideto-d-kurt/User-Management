@@ -29,9 +29,9 @@ class Users extends Eloquent
         return $user;
     }
 
-    public static function getOneUserByUnique($search_key)
+    public static function getOneUserByUnique($search_key, $value)
     {
-        $user = self::where($search_key, '=', $user[$search_key])->first();
+        $user = self::where($search_key, '=', $value)->first();
         $user = json_decode($user, true);
         return $user;
     }
